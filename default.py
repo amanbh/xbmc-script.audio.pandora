@@ -28,8 +28,8 @@ dlg = xbmcgui.DialogProgress()
 dlg.create( _NAME, "Loading Script..." )
 dlg.update( 0 )
 
-from pithos.pandora.pandora import Pandora, PandoraError
-import pithos.pandora.data
+from xbmcpithos.pandora.pandora import Pandora, PandoraError
+import xbmcpithos.pandora.data
 
 from pandagui import PandaGUI
 from pandaplayer import PandaPlayer
@@ -135,15 +135,15 @@ class Panda:
 		pwd = self.settings.getSetting( "password" )
 		if user == "" or pwd == "":
 			return False
-		client_id = pithos.pandora.data.default_client_id
+		client_id = xbmcpithos.pandora.data.default_client_id
 		pandoraone = self.settings.getSetting( "pandoraone" )
 		if pandoraone == "true":
-			client_id = pithos.pandora.data.default_one_client_id
+			client_id = xbmcpithos.pandora.data.default_one_client_id
 		dlg = xbmcgui.DialogProgress()
 		dlg.create( _NAME, "Logging In..." )
 		dlg.update( 0 )
 		try:
-			self.pandora.connect(pithos.pandora.data.client_keys[client_id], user, pwd)
+			self.pandora.connect(xbmcpithos.pandora.data.client_keys[client_id], user, pwd)
 		except PandoraError, e:
 			return 0;
 		dlg.close()
